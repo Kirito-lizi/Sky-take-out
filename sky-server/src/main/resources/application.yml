@@ -13,9 +13,9 @@ spring:
       username: ${sky.datasource.username}
       password: ${sky.datasource.password}
   redis:
-    host: 47.110.134.77
+    host: ${sky.datasource.host}
     port: 6379
-    password: 123456
+    password: ${sky.datasource.password}
     database: 10
 
 mybatis:
@@ -42,8 +42,15 @@ sky:
     admin-ttl: 72000000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+    user-secret-key: itheima
+    user-ttl: 7200000
+    user-token-name: authentication
+  wechat:
+    appid: ${sky.wechat.appid}
+    secret: ${sky.wechat.secret}
+
   alioss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
-    accessKeyId: ${ALIBABA_CLOUD_ACCESS_KEY_ID}
-    accessKeySecret: ${ALIBABA_CLOUD_ACCESS_KEY_SECRET}
+    accessKeyId: ${sky.alioss.accessKeyId}
+    accessKeySecret: ${sky.alioss.accessKeySecret}
     bucketName: kirito-web
