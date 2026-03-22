@@ -12,6 +12,8 @@ import java.util.List;
 
 
 public interface DishService {
+    public void startOrStop(Integer status, Long id) ;
+
     public void saveWithFlavor (DishDTO dishDTO);
 
     PageResult pageQuery(DishPageQueryDTO dishPageQueryDTO);
@@ -25,5 +27,10 @@ public interface DishService {
 
         List<DishVO> listWithFlavor(Dish dish);
 
-
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    List<Dish> list(Long categoryId);
 }

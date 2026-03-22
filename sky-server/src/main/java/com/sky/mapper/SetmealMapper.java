@@ -1,7 +1,14 @@
 package com.sky.mapper;
 
+import com.github.pagehelper.Page;
+import com.sky.annotation.AutoFill;
+import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
+import com.sky.entity.SetmealDish;
+import com.sky.enumeration.OperationType;
 import com.sky.vo.DishItemVO;
+import com.sky.vo.SetmealVO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -27,6 +34,7 @@ public interface SetmealMapper {
 
     /**
      * 根据套餐id查询菜品选项
+     *
      * @param setmealId
      * @return
      */
@@ -35,4 +43,28 @@ public interface SetmealMapper {
             "where sd.setmeal_id = #{setmealId}")
     List<DishItemVO> getDishItemBySetmealId(Long setmealId);
 
+    @AutoFill(OperationType.INSERT)
+    void insert(Setmeal setmeal);
+
+    void insertBatch(List<SetmealDish> setmealDishes);
+
+    Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     * @return
+     */
+    @Select("select * from setmeal where id = #{id}")
+    Setmeal getById(Long id);
+
+    /**
+     * 根据id删除套餐
+     * @param setmealId
+     */
+    @Delete("delete from setmeal where id = #{id}")
+    void deleteById(Long setmealId);
+
+    @AutoFill(OperationType.UPDATE)
+    void update(Setmeal setmeal);
 }

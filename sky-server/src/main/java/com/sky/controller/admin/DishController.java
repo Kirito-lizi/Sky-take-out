@@ -56,10 +56,36 @@ public class DishController {
     }
 
     @PutMapping
-    @ApiOperation("新增菜品")
+    @ApiOperation("修改菜品")
         public Result update(@RequestBody DishDTO dishDTO){
         log.info("修改菜品：{}",dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
     }
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    @GetMapping("/list")
+    @ApiOperation("根据分类id查询菜品")
+    public Result<List<Dish>> list(Long categoryId){
+        List<Dish> list = dishService.list(categoryId);
+        return Result.success(list);
+    }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("菜品启售停售")
+    public Result startOrStop(@PathVariable Integer status,Long id){
+        log.info("修改菜品售卖状态：{}",status);
+        dishService.startOrStop(status, id);
+        return Result.success();
+
+    }
+
 }

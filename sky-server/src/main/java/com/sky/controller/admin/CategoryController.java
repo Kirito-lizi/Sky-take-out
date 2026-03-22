@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 分类管理
  */
-@RestController
+@RestController("adminCategoryController")
 @RequestMapping("/admin/category")
 @Api(tags = "分类相关接口")
 @Slf4j
@@ -58,7 +58,7 @@ public class CategoryController {
      */
     @DeleteMapping
     @ApiOperation("删除分类")
-    public Result<String> deleteById(Long id){
+    public Result<String> deleteById(@RequestParam Long id){
         log.info("删除分类：{}", id);
         categoryService.deleteById(id);
         return Result.success();
@@ -96,7 +96,7 @@ public class CategoryController {
      */
     @GetMapping("/list")
     @ApiOperation("根据类型查询分类")
-    public Result<List<Category>> list(Integer type){
+    public Result<List<Category>> list(@RequestParam(required = false)Integer type){
         List<Category> list = categoryService.list(type);
         return Result.success(list);
     }
