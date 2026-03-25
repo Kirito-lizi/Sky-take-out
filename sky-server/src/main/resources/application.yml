@@ -54,3 +54,7 @@ sky:
     accessKeyId: ${sky.alioss.accessKeyId}
     accessKeySecret: ${sky.alioss.accessKeySecret}
     bucketName: kirito-web
+  shop:
+    address: 合肥大学44栋
+  baidu:
+    ak: J6teIYutcfIKR1LXSzcoJQLsAmpmPJ2R
